@@ -1,0 +1,174 @@
+@import '../layout/index.scss';
+
+@mixin arrow ($position, $width: 2px, $size: 7px, $color: #ccc) {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  width: $size;
+  height: $size;
+  border: $width solid $color;
+  transform: rotate(45deg);
+  &::after {
+    content: '';
+    position: absolute;
+    left: -5px;
+    right: -5px;
+    top: -5px;
+    bottom: -5px;
+  }
+  @if $position == 'top' {
+    border-right: none;
+    border-bottom: none;;
+  } @else if $position == 'right' {
+    border-left: none;
+    border-bottom: none;
+  } @else if $position == 'bottom' {
+    border-top: none;
+    border-left: none;
+  } @else if $position == 'left' {
+    border-top: none;
+    border-right: none;
+  }
+}
+// used in pseudo element ::before, ::after
+@mixin pseudoArrow ($position, $width: 2px, $size: 7px, $color: #ccc) {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  width: $size;
+  height: $size;
+  border: $width solid $color;
+  transform: rotate(45deg);
+
+  @if $position == 'top' {
+    border-right: none;
+    border-bottom: none;;
+  } @else if $position == 'right' {
+    border-left: none;
+    border-bottom: none;
+  } @else if $position == 'bottom' {
+    border-top: none;
+    border-left: none;
+  } @else if $position == 'left' {
+    border-top: none;
+    border-right: none;
+  }
+}
+@mixin cross ($size: 20px, $bold: 2px, $color: gray, $bgColor: transparent) {
+  width: $size;
+  height: $size;
+  position: relative;
+  background-color: $bgColor;
+  &::before,
+  &::after{
+    content: "";
+    position: absolute;
+    height: 0.8 * $size;
+    width: $bold;
+    top: 0.1 * $size;
+    right: ($size - $bold) / 2;
+    background-color: $color;
+    border-radius: 0.5 * $bold;
+  }
+  &::before{
+    transform: rotate(45deg);
+  }
+  &::after{
+    transform: rotate(-45deg);
+  }
+}
+@mixin add ($size: 14px, $bold: 2px, $color:#fc5832) {
+  width: $size;
+  height: $size;
+  position: absolute;
+  &::before,
+  &::after{
+    content: "";
+    position: absolute;
+    height: 0.8 * $size;
+    width: $bold;
+    top: 0.1 * $size;
+    right: ($size - $bold) / 2;
+    background-color: $color;
+    border-radius: 0.5 * $bold;
+  }
+  &::before{
+    transform: rotate(180deg);
+  }
+  &::after{
+    transform: rotate(-90deg);
+  }
+}
+@mixin menu ($width: 18px, $bold: 2px, $color:#FFFFFF) {
+  width: $width;
+  height: $bold;
+  box-sizing: border-box;
+  border: $bold/2 solid $color;
+  position: relative;
+  &::before{
+    content: '';
+    width: $width;
+    box-sizing: border-box;
+    position: absolute;
+    height: $bold;
+    border: $bold/2 solid $color;
+    top: -($bold * 3.5);
+    @include center-align-translate('h');
+  }
+  &::after{
+    content: '';
+    width: $width;
+    box-sizing: border-box;
+    position: absolute;
+    height: $bold;
+    border: $bold/2 solid $color;
+    top: ($bold * 2.5);
+    @include center-align-translate('h');
+  }
+}
+@mixin exclamatory ($width, $height, $color, $inclination: 0.1) {
+  position: relative;
+  width: $width;
+  height: $height + 1.6 * $width;
+  border-width: $height ($inclination*$height) 0;
+  border-style: solid solid none;
+  border-color: $color transparent transparent;
+  &::after{
+    content: '';
+    width: $width;
+    height: $width;
+    border-radius: 50%;
+    background-color: $color;
+    position: absolute;
+    top: 0.6 * $width;
+    @include center-align-translate('h');
+  }
+}
+@mixin triangle ($direction, $width, $color, $inclination: 0.5) {
+  width: 0;
+  height: 0;
+  @if $direction == 'top' {
+    border-left: $width * $inclination solid transparent;
+    border-right: $width * $inclination solid transparent;
+    border-bottom: $width solid $color;
+  } @else if $direction == 'bottom' {
+    border-left: $width * $inclination solid transparent;
+    border-right: $width * $inclination solid transparent;
+    border-top: $width solid $color;
+  } @else if $direction == 'left' {
+    border-top: $width * $inclination solid transparent;
+    border-bottom: $width * $inclination solid transparent;
+    border-right: $width solid $color;
+  } @else if $direction == 'right' {
+    border-top: $width * $inclination solid transparent;
+    border-bottom: $width * $inclination solid transparent;
+    border-left: $width solid $color;
+  }
+}
+@mixin ring ($radius, $bold, $color) {
+  width: $radius;
+  height: $radius;
+  border: $bold solid $color;
+  border-radius: 50%;
+}
