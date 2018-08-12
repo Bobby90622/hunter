@@ -9,9 +9,9 @@ module.exports = {
     {
       name: 'hunter',
       script: 'server.js',
-      'log_file': process.env.NODE_ENV === 'test' ? '/tmp/hmlyweb/himalaya.log' : '/var/log/himalaya-web/himalaya.log',
-      'error_file': process.env.NODE_ENV === 'test' ? '/tmp/hmlyweb/himalaya-err.log' : '/var/log/himalaya/himalaya-err.log',
-      'out_file': process.env.NODE_ENV === 'test' ? '/tmp/hmlyweb/himalaya-out.log' : '/var/log/himalaya-web/himalaya-out.log',
+      'log_file': '/var/log/hunter/hunter.log',
+      'error_file': '/var/log/hunter/hunter-err.log',
+      'out_file': '/var/log/hunter/hunter-out.log',
       'instances': 4,
       'exec_mode': 'cluster',
       'max_memory_restart': '500M',
@@ -23,7 +23,7 @@ module.exports = {
       },
       env_production: {
         NODE_ENV: 'production',
-        'port': 3478
+        'port': 8201
       }
     }
   ],
@@ -33,14 +33,14 @@ module.exports = {
    * http://pm2.keymetrics.io/docs/usage/deployment/
    */
   deploy: {
-    test: {
+    production: {
       user: 'root',
-      host: '192.168.3.60',
-      ref: 'origin/test',
+      host: '47.75.185.211',
+      ref: 'origin/master',
       key: 'build/id_rsa',
-      repo: 'git@gitlab.ximalaya.com:FEM/himalaya-web.git',
-      path: '/srv/nodejs/himalaya-web',
-      'post-deploy': 'npm i && npm run test_build && npm run test_start',
+      repo: 'git@github.com:Bobby90622/hunter.git',
+      path: '/srv/hunter',
+      'post-deploy': 'npm i && npm run publish_build && npm run publish_start',
       env: {
         NODE_ENV: 'production'
       }

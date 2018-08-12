@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "node server.js",
     "start": "npm run dev",
-    "publish_build": "NODE_ENV=production npm run build_node && NODE_ENV=production npm run build_web",
+    "publish_build": "webpack",
     "publish_start": "NODE_ENV=production pm2 start build/ecosystem.config.js --env production",
     "publish": "pm2 deploy publish/ecosystem.config.js production"
   },
