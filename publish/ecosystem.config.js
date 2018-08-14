@@ -41,7 +41,7 @@ module.exports = {
       key: 'publish/id_rsa',
       repo: 'git@github.com:Bobby90622/hunter.git',
       path: '/srv/hunter',
-      'post-deploy': 'npm i && npm run publish_build && npm run publish_start',
+      'post-deploy': 'cnpm i && npm run publish_build && npm run publish_start',
       env: {
         NODE_ENV: 'production'
       }
