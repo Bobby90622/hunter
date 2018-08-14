@@ -16,6 +16,7 @@ module.exports = {
       'exec_mode': 'cluster',
       'max_memory_restart': '500M',
       env: {
+        NODE_ENV: 'development',
         COMMON_VARIABLE: 'true'
       },
       env_test: {
