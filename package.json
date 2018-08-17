@@ -8,7 +8,7 @@
     "dev": "node server.js",
     "start": "npm run dev",
     "publish_build": "webpack",
-    "publish_start": "NODE_ENV=production pm2 start build/ecosystem.config.js --env production",
+    "publish_start": "NODE_ENV=production pm2 start publish/ecosystem.config.js --env production",
     "publish": "pm2 deploy publish/ecosystem.config.js production"
   },
   "dependencies": {
