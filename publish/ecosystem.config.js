@@ -38,7 +38,7 @@ module.exports = {
       user: 'root',
       host: '47.75.185.211',
       ref: 'origin/master',
-      key: 'publish/id_rsa',
+      key: '~/.ssh/ali_id_rsa',
       repo: 'git@github.com:Bobby90622/hunter.git',
       path: '/srv/hunter',
       'post-deploy': 'cnpm i && npm run publish_build && npm run publish_start',
